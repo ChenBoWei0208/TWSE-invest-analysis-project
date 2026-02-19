@@ -25,8 +25,9 @@ with sync_playwright() as playwright:
     page.select_option('select[name="mm"]', value=stock_month)
     page.get_by_label("股票代碼").fill(stock_id)
     page.click('button.search')
-    page.wait_for_selector('table.main-list')
-    rows = page.query_selector_all('table.main-list tr')
-    print(len(rows))
+    page.wait_for_selector('tbody')
+    rows =page.locator('tbody')
+    print(rows.all_inner_texts())
+
     system("pause")
     browser.close()
