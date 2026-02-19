@@ -27,5 +27,6 @@ with sync_playwright() as playwright:
     page.click('button.search')
     page.wait_for_selector('table.main-list')
     rows = page.query_selector_all('table.main-list tr')
+    print(len(rows))
     system("pause")
     browser.close()
