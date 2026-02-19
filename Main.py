@@ -27,7 +27,10 @@ with sync_playwright() as playwright:
     page.click('button.search')
     page.wait_for_selector('tbody')
     rows =page.locator('tbody')
-    print(rows.all_inner_texts())
-
+    count = rows.count()
+    for i in range(count):
+        cells = rows.nth(i).locator('td')
+        row_data = cells.all_inner_texts()
+        for data in row_data:
+            print(data)
     system("pause")
-    browser.close()
